@@ -1,73 +1,97 @@
-#assignform select,input { 
-	font:normal 12px Arial; 
-	padding:3px;
+.path-local-multiple_enrollments #assignform select,
+input {
+	font: normal 12px Arial;
+	padding: 3px;
 }
-#assignform div { 
-	font:bold 12px Arial; 
-	padding:1px;
+
+.path-local-multiple_enrollments #assignform div {
+	font: bold 12px Arial;
+	padding: 1px;
 }
-#assignform div.label { 
-	font:normal 12px Arial;
-	padding:1px;
+
+.path-local-multiple_enrollments #assignform div.label {
+	font: normal 12px Arial;
+	padding: 1px;
 }
-.success_msg { 
-	float:center;
-	width:100%;
-	text-align:center;
-	color:#19722C;
+
+.path-local-multiple_enrollments .success_msg {
+	float: center;
+	width: 100%;
+	text-align: center;
+	color: #19722C;
 }
-.label_div {
-	float:left;
-	width:20%;
+
+.path-local-multiple_enrollments .label_div {
+	float: left;
+	width: 20%;
 }
-.control_div {
-	float:left;
-	width:79%;
+
+.path-local-multiple_enrollments.dir-rtl .label_div {
+	float: right;
 }
-.enrol_option_div {
-	clear:both;	
-	padding-top:20px;
+
+.path-local-multiple_enrollments .control_div {
+	float: left;
+	width: 79%;
+}
+
+.path-local-multiple_enrollments.dir-rtl .control_div {
+	float: right;
+}
+
+.path-local-multiple_enrollments .enrol_option_div {
+	clear: both;
+	padding-top: 20px;
 	border: 0px solid red;
 }
-.loading {
-	font-family:Arial, Helvetica, sans-serif; 
-	font-weight:bold;
-	font-size:18;
-	color:#FF0000;
-	padding-bottom:5px;
+
+.path-local-multiple_enrollments .loading {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 18;
+	color: #FF0000;
+	padding-bottom: 5px;
 }
-#displaytype {
-	margin-top:5px;
-	width:100%; 
-	float:left;
-	padding-bottom:5px;
+
+.path-local-multiple_enrollments #displaytype {
+	margin-top: 5px;
+	width: 100%;
+	float: left;
+	padding-bottom: 5px;
 }
-.option_label {
-	float:left; 
-	font-weight: normal; 
-	margin-right: 10px; 
+
+.path-local-multiple_enrollments .option_label {
+	float: left;
+	font-weight: normal;
+	margin-right: 10px;
 }
-.coursesection {
-	float:left; 
-	width:40%;
+
+.path-local-multiple_enrollments .coursesection {
+	float: left;
+	width: 40%;
 }
-.usersection {
-	float:left; 
-	width:39%;
+
+.path-local-multiple_enrollments .usersection {
+	float: left;
+	width: 39%;
 }
-.assignedcourse {
-	float:left; 
-	width:48%;
+
+.path-local-multiple_enrollments .assignedcourse {
+	float: left;
+	width: 48%;
 }
-.potentialcourse {
-	float:left; 
-	width:48%;
+
+.path-local-multiple_enrollments .potentialcourse {
+	float: left;
+	width: 48%;
 }
-.separator {
-	clear:both;
-	height:15px;
+
+.path-local-multiple_enrollments .separator {
+	clear: both;
+	height: 15px;
 }
-.fulldiv {
-	clear:both;
-	width:100%
+
+.path-local-multiple_enrollments .fulldiv {
+	clear: both;
+	width: 100%
 }

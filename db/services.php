@@ -27,12 +27,31 @@
  * @license   https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
- defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'local_multiple_enrollments';
-$plugin->version = 2025060300;
-$plugin->requires = 2022112800; // Moodle 4.1!
-$plugin->maturity = MATURITY_STABLE;
-$plugin->release = '2.0.0';
-$plugin->supported = [401, 500];
-
+$functions = [
+    'local_multiple_enrollments_assign_courses' => [
+        'classname' => 'local_multiple_enrollments\external\assign_courses',
+        'methodname' => 'execute',
+        'classpath' => 'local/multiple_enrollments/externallib.php',
+        'description' => 'Assign multiple users to multiple courses',
+        'type' => 'write',
+        'ajax' => true,
+    ],
+    'local_multiple_enrollments_get_updated_courses' => [
+        'classname'   => 'local_multiple_enrollments\\external\\get_updated_courses',
+        'methodname'  => 'execute',
+        'classpath'   => 'local/multiple_enrollments/externallib.php',
+        'description' => 'Fetch updated existing and potential courses for a user',
+        'type'        => 'read',
+        'ajax'        => true,
+    ],
+    'local_multiple_enrollments_manage_courses' => [
+        'classname'   => 'local_multiple_enrollments\external\manage_courses',
+        'methodname'  => 'execute',
+        'classpath'   => 'local/multiple_enrollments/externallib.php',
+        'description' => 'Manage courses for a user (assign or unassign)',
+        'type'        => 'write',
+        'ajax'        => true,
+    ],
+];

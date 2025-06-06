@@ -28,3 +28,7 @@ Release Notes
 v1.1.1
 ajax_assign_multiple_courses.php
 An extra condition in the query to get only specific users to be displayed is got rid of
+
+-------------
+New version of multiple_enrollments by ELT - Samar Al khalil
+compatible moodle 4.1 and higher

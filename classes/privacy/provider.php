@@ -27,12 +27,20 @@
  * @license   https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
- defined('MOODLE_INTERNAL') || die();
+namespace local_multiple_enrollments\privacy;
 
-$plugin->component = 'local_multiple_enrollments';
-$plugin->version = 2025060300;
-$plugin->requires = 2022112800; // Moodle 4.1!
-$plugin->maturity = MATURITY_STABLE;
-$plugin->release = '2.0.0';
-$plugin->supported = [401, 500];
+/**
+ * Privacy Subsystem implementing null_provider.
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
 
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return string
+     */
+    public static function get_reason(): string {
+        return 'privacy:metadata';
+    }
+}

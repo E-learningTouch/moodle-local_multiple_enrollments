@@ -1,30 +1,44 @@
-moodle-local_multiple_enrollments
-==================================
-A local plugin that allows admin to enrol multiple users into multiple courses.
-It also allows to enrol/unenrol multiple courses to/from a user.
+# Multiple Enrollments
 
-Version
--------
-1.1.0 (2013032500)
+## Table of Contents
 
-Requires:
---------
-Moodle 2.0 or higher
+- [Multiple Enrollments](#multiple-enrollments)
+  - [Table of Contents](#table-of-contents)
+  - [:bookmark\_tabs: About The Project](#bookmark_tabs-about-the-project)
+  - [:gear: Installation](#gear-installation)
+    - [:mortar\_board: Moodle Way](#mortar_board-moodle-way)
+    - [:wrench: Manual](#wrench-manual)
+    - [:octocat: Using Git](#octocat-using-git)
+  - [:book: Documentation](#book-documentation)
 
-Installation:
-------------
-Download zip from: http://moodle.org/plugins/pluginversions.php?plugin=local_multiple_enrollments
-Unzip into the 'local' subfolder of your Moodle install.
-Rename the new folder to multiple_enrollments.
-Visit http://yoursite.com/admin to finish the installation. 
+## :bookmark_tabs: About The Project
 
-Documentation:
--------------
-Please feel free to contribute documentation in the relevant area of
-the MoodleDocs wiki.
+A local plugin that allows administrators to enrol multiple users into multiple courses.
 
-Release Notes
----------------
-v1.1.1
-ajax_assign_multiple_courses.php
-An extra condition in the query to get only specific users to be displayed is got rid of
+It also allows enrolling or unenrolling multiple courses for a single user.
+
+## :gear: Installation
+
+For more information, see the [official plugin installation guide](https://docs.moodle.org/en/Installing_plugins).
+
+### :mortar_board: Moodle Way
+
+1. Download the latest version or source code of the plugin compatible with your Moodle platform.
+2. Go to your platform's plugin installation page: `Site administration > Plugins > Install plugins`.
+3. Upload the plugin file and follow the installation process.
+
+### :wrench: Manual
+
+1. Download the latest version or source code of the plugin compatible with your Moodle platform.
+2. Navigate to the `moodle/local` directory on your platform.
+3. Unzip the plugin into the directory and make sure that the folder containing the plugin files is named `multiple_enrollments`.
+
+### :octocat: Using Git
+
+1. Open a terminal and navigate to the `moodle/local` directory on your platform.
+2. Clone the project using the following command:  
+   `git clone https://github.com/E-learningTouch/moodle-local_multiple_enrollments multiple_enrollments`
+
+## :book: Documentation
+
+Please visit the [plugin wiki](https://github.com/E-learningTouch/moodle-local_multiple_enrollments/wiki) for full documentation.
