@@ -29,9 +29,21 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'local_multiple_enrollments';
-$plugin->version = 2025060300;
-$plugin->requires = 2022112800; // Moodle 4.1!
-$plugin->maturity = MATURITY_STABLE;
-$plugin->release = '2.0.0';
-$plugin->supported = [401, 405];
+$capabilities = [
+    'local/multiple_enrollments:view' => [
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => [
+            'manager' => CAP_ALLOW,
+            'editingteacher' => CAP_ALLOW,
+        ],
+    ],
+    'local/multiple_enrollments:manage' => [
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => [
+            'manager' => CAP_ALLOW,
+            'editingteacher' => CAP_ALLOW,
+        ],
+    ],
+];
