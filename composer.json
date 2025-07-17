@@ -1,0 +1,15 @@
+{
+    "name": "elearningtouch/local_multiple_enrollments",
+    "description": "Allows administrators to enrol multiple users into multiple courses.",
+    "type": "moodle-local",
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "local_multiple_enrollments\\": "classes/"
+        }
+    },
+    "require": {},
+    "extra": {
+        "installer-name": "local_multiple_enrollments"
+    }
+}
