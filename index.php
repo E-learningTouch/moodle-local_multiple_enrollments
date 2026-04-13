@@ -48,16 +48,33 @@ $PAGE->requires->js_call_amd('local_multiple_enrollments/init', 'init');
 $roles = $DB->get_records_menu('role', null, 'shortname ASC', 'id, shortname');
 $courses = $DB->get_records_menu('course', ['visible' => 1], 'fullname ASC', 'id, fullname');
 
-$dbusers = $DB->get_records('user', ['deleted' => 0, 'suspended' => 0], 'lastname ASC', 'id, firstname, lastname, username');
+//New filter behaviour with username and idnumber
+$dbusers = $DB->get_records('user', ['deleted' => 0, 'suspended' => 0], 'lastname ASC', 'id, firstname, lastname, username, idnumber');
 $users = [];
 $canviewidentity = has_capability('moodle/site:viewuseridentity', context_system::instance());
+
 foreach ($dbusers as $user) {
     $displayname = fullname($user); 
-    if ($canviewidentity && !empty($user->username)) {
-        $displayname .= ' (' . $user->username . ')';
+    
+    if ($canviewidentity) {
+        $identityfields = [];
+        
+        if (!empty($user->username)) {
+            $identityfields[] = $user->username;
+        }
+        
+        if (!empty($user->idnumber)) {
+            $identityfields[] = $user->idnumber;
+        }
+        
+        if (!empty($identityfields)) {
+            $displayname .= ' (' . implode(' - ', $identityfields) . ')';
+        }
     }
-        $users[$user->id] = $displayname;
+    
+    $users[$user->id] = $displayname;
 }
+//End new filter behaviour
 
 $form = new menroll_form(null, ['roles' => $roles, 'courses' => $courses, 'users' => $users]);
 
