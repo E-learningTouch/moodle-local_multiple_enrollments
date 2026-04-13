@@ -98,10 +98,6 @@ if ($form->is_cancelled()) {
     redirect(new moodle_url('/local/multiple_enrollments/index.php'), get_string('assignmessage', 'local_multiple_enrollments'));
 }
 
-
-
-
-
 // Render the page.
 echo $OUTPUT->header();
 echo $OUTPUT->heading(get_string('multiple_enrollments_title', 'local_multiple_enrollments'));
