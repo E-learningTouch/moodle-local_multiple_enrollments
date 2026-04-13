@@ -14,8 +14,14 @@ Additionally, make sure to acknowledge all contributors by adding their names to
 
 ## Table of Contents
 
+- [2.1.0](#2.1.0)
 - [2.0.0](#2.0.0)
 - [1.1.0](#1.1.0)
+
+## 2.1.0
+
+Code upgrade for 5.1 and 5.2 versions
+New filter behaviour
 
 ## 2.0.0
 
