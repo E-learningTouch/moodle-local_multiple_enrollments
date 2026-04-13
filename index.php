@@ -49,7 +49,12 @@ $roles = $DB->get_records_menu('role', null, 'shortname ASC', 'id, shortname');
 $courses = $DB->get_records_menu('course', ['visible' => 1], 'fullname ASC', 'id, fullname');
 
 //New filter behaviour with username and idnumber
-$dbusers = $DB->get_records('user', ['deleted' => 0, 'suspended' => 0], 'lastname ASC', 'id, firstname, lastname, username, idnumber');
+$namefields = \core_user\fields::get_name_fields();
+$extrafields = ['id', 'username', 'idnumber'];
+$fieldstoselect = implode(', ', array_merge($extrafields, $namefields));
+
+$dbusers = $DB->get_records('user', ['deleted' => 0, 'suspended' => 0], 'lastname ASC', $fieldstoselect);
+
 $users = [];
 $canviewidentity = has_capability('moodle/site:viewuseridentity', context_system::instance());
 
