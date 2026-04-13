@@ -47,7 +47,17 @@ $PAGE->requires->js_call_amd('local_multiple_enrollments/init', 'init');
 // Fetch data for the form.
 $roles = $DB->get_records_menu('role', null, 'shortname ASC', 'id, shortname');
 $courses = $DB->get_records_menu('course', ['visible' => 1], 'fullname ASC', 'id, fullname');
-$users = $DB->get_records_menu('user', ['deleted' => 0, 'suspended' => 0], 'lastname ASC', 'id, CONCAT(lastname, " ",firstname)');
+
+$dbusers = $DB->get_records('user', ['deleted' => 0, 'suspended' => 0], 'lastname ASC', 'id, firstname, lastname, username');
+$users = [];
+$canviewidentity = has_capability('moodle/site:viewuseridentity', context_system::instance());
+foreach ($dbusers as $user) {
+    $displayname = fullname($user); 
+    if ($canviewidentity && !empty($user->username)) {
+        $displayname .= ' (' . $user->username . ')';
+    }
+        $users[$user->id] = $displayname;
+}
 
 $form = new menroll_form(null, ['roles' => $roles, 'courses' => $courses, 'users' => $users]);
 
