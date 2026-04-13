@@ -33,6 +33,6 @@ $plugin->component = 'local_multiple_enrollments';
 $plugin->version = 2026041300;
 $plugin->requires = 2022112800; // Moodle 4.1!
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '2.0.0';
-$plugin->supported = [401, 500];
+$plugin->release = '2.1.0';
+$plugin->supported = [401, 502];
 
