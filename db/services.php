@@ -54,4 +54,12 @@ $functions = [
         'type'        => 'write',
         'ajax'        => true,
     ],
+    'local_multiple_enrollments_search_users' => [
+        'classname'   => 'local_multiple_enrollments\external\search_users',
+        'methodname'  => 'execute',
+        'description' => 'Search the users that can be enrolled from the Multiple Enrollments page',
+        'type'        => 'read',
+        'ajax'        => true,
+        'readonlysession' => true,
+    ],
 ];

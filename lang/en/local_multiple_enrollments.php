@@ -48,6 +48,7 @@ $string['existingcourse'] = 'Existing Courses';
 $string['existingcoursesgroup'] = 'Use the controls below to manage existing course enrollments';
 $string['existingcoursesgroup_help'] = 'Note: Press Ctrl key to select multiple options';
 $string['existingenrollment'] = 'Existing Enrollment';
+$string['invaliduser'] = 'One or more selected users cannot be enrolled.';
 $string['livetek_addons'] = 'Multiple Enrollments';
 $string['menrol_title'] = 'Multiple Enrollments';
 $string['menrol_title_help'] = 'Multiple Enrollments Help!!!';

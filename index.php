@@ -48,40 +48,8 @@ $PAGE->requires->js_call_amd('local_multiple_enrollments/init', 'init');
 $roles = $DB->get_records_menu('role', null, 'shortname ASC', 'id, shortname');
 $courses = $DB->get_records_menu('course', ['visible' => 1], 'fullname ASC', 'id, fullname');
 
-//New filter behaviour with username and idnumber
-$namefields = \core_user\fields::get_name_fields();
-$extrafields = ['id', 'username', 'idnumber'];
-$fieldstoselect = implode(', ', array_merge($extrafields, $namefields));
-
-$dbusers = $DB->get_records('user', ['deleted' => 0, 'suspended' => 0], 'lastname ASC', $fieldstoselect);
-
-$users = [];
-$canviewidentity = has_capability('moodle/site:viewuseridentity', context_system::instance());
-
-foreach ($dbusers as $user) {
-    $displayname = fullname($user); 
-    
-    if ($canviewidentity) {
-        $identityfields = [];
-        
-        if (!empty($user->username)) {
-            $identityfields[] = $user->username;
-        }
-        
-        if (!empty($user->idnumber)) {
-            $identityfields[] = $user->idnumber;
-        }
-        
-        if (!empty($identityfields)) {
-            $displayname .= ' (' . implode(' - ', $identityfields) . ')';
-        }
-    }
-    
-    $users[$user->id] = $displayname;
-}
-//End new filter behaviour
-
-$form = new menroll_form(null, ['roles' => $roles, 'courses' => $courses, 'users' => $users]);
+// Users are not loaded here: the pickers search them on demand (local_multiple_enrollments_search_users).
+$form = new menroll_form(null, ['roles' => $roles, 'courses' => $courses]);
 
 // Fetch data for the form.
 $rolescourse = $DB->get_records('role', null, 'shortname ASC');

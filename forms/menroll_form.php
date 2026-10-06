@@ -29,6 +29,8 @@
 
 defined('MOODLE_INTERNAL') || die();require_once($CFG->libdir . '/formslib.php');
 
+use local_multiple_enrollments\local\user_search;
+
 class menroll_form extends moodleform {
     protected function definition() {
         $mform = $this->_form;
@@ -83,14 +85,15 @@ class menroll_form extends moodleform {
 
         // Course and User selection for new enrollment!
         $courses = $this->_customdata['courses'] ?? [];
-        $users = $this->_customdata['users'] ?? [];
 
-        // Options for multi-select autocomplete!
+        // Users are searched on the server: the whole user list would freeze the page on large sites!
         $useroptions = [
             'multiple' => true, // Allow multiple users to be selected!
             'placeholder' => get_string('selectuser', 'local_multiple_enrollments'),
             'showsuggestions' => true, // Show suggestions as the user types!
             'tags' => false, // Do not allow custom tags!
+            'ajax' => 'local_multiple_enrollments/form-user-selector',
+            'valuehtmlcallback' => [$this, 'get_user_label_html'],
         ];
         $courseoptions = [
             'multiple' => true, // Allow multiple courses to be selected!
@@ -104,7 +107,7 @@ class menroll_form extends moodleform {
             'autocomplete',
             'new_selecteduser',
             get_string('roleuser', 'local_multiple_enrollments'),
-            $users,
+            [],
             $useroptions
         );
 
@@ -134,18 +137,19 @@ class menroll_form extends moodleform {
         $mform->addElement('header', 'existingenrollmentheader', get_string('existingenrollment', 'local_multiple_enrollments'));
 
         // User selection for existing enrollment (convert select to autocomplete)!
-        $users = $this->_customdata['users'] ?? [];
         $options = [
             'multiple' => false, // Single user selection!
             'placeholder' => get_string('selectuser', 'local_multiple_enrollments'),
             'showsuggestions' => true, // Show suggestions as user types!
             'tags' => false, // Do not allow custom tags!
+            'ajax' => 'local_multiple_enrollments/form-user-selector',
+            'valuehtmlcallback' => [$this, 'get_user_label_html'],
         ];
         $mform->addElement(
             'autocomplete',
             'existing_selecteduser',
             get_string('selectuser', 'local_multiple_enrollments'),
-            $users,
+            [],
             $options
         );
         $mform->setType('existing_selecteduser', PARAM_INT);
@@ -256,6 +260,9 @@ class menroll_form extends moodleform {
         if (!empty($data['enrollment']) && $data['enrollment'] === 'newenrollment') {
             if (empty($data['new_selecteduser'])) {
                 $errors['new_selecteduser'] = get_string('userrequired', 'local_multiple_enrollments');
+            } else if (!user_search::all_selectable((array) $data['new_selecteduser'])) {
+                // The ajax picker accepts any submitted id: check them on the server!
+                $errors['new_selecteduser'] = get_string('invaliduser', 'local_multiple_enrollments');
             }
             if (empty($data['selectedcourse'])) {
                 $errors['selectedcourse'] = get_string('courserequired', 'local_multiple_enrollments');
@@ -266,9 +273,25 @@ class menroll_form extends moodleform {
         if (!empty($data['enrollment']) && $data['enrollment'] === 'existingenrollment') {
             if (empty($data['existing_selecteduser'])) {
                 $errors['existing_selecteduser'] = get_string('userrequired', 'local_multiple_enrollments');
+            } else if (!user_search::all_selectable([$data['existing_selecteduser']])) {
+                $errors['existing_selecteduser'] = get_string('invaliduser', 'local_multiple_enrollments');
             }
         }
 
         return $errors;
+    }
+
+    /**
+     * Label of a selected user, used by the ajax pickers when the form is displayed again.
+     *
+     * @param string $userid
+     * @return string|false Escaped HTML, or false when the id is not a selectable user.
+     */
+    public function get_user_label_html($userid) {
+        $users = user_search::get_users([$userid]);
+        if (!$users) {
+            return false;
+        }
+        return s(user_search::get_label(reset($users)));
     }
 }

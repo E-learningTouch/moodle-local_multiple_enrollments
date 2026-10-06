@@ -14,9 +14,19 @@ Additionally, make sure to acknowledge all contributors by adding their names to
 
 ## Table of Contents
 
+- [2.1.1](#2.1.1)
 - [2.1.0](#2.1.0)
 - [2.0.0](#2.0.0)
 - [1.1.0](#1.1.0)
+
+## 2.1.1
+
+Compatibility: Moodle 4.1 to 5.2.
+
+### Fixed
+
+- The page no longer freezes on sites with many users: the user pickers now search users as you type instead of loading every user of the site when the page opens. When a search matches more than 100 users, type more letters to narrow it down.
+- The guest account no longer appears in the user pickers.
 
 ## 2.1.0
 

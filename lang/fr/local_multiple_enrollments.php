@@ -48,6 +48,7 @@ $string['existingcourse'] = 'Cours existants';
 $string['existingcoursesgroup'] = 'Utilisez les contrôles ci-dessous pour gérer les inscriptions existantes aux cours';
 $string['existingcoursesgroup_help'] = 'Note : Appuyez sur la touche Ctrl pour sélectionner plusieurs options';
 $string['existingenrollment'] = 'Inscription existante';
+$string['invaliduser'] = 'Un ou plusieurs utilisateurs sélectionnés ne peuvent pas être inscrits.';
 $string['livetek_addons'] = 'Inscription Multiple';
 $string['menrol_title'] = 'Inscription Multiple';
 $string['menrol_title_help'] = 'Aide sur l\'inscription multiple !!!';
